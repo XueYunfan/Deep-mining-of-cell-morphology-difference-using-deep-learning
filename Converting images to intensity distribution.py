@@ -20,12 +20,7 @@ for name in image_name:
 	image_converted = tf.cast(image_processed, tf.float32)
 	image = image_converted.numpy()
 	for intensity in range(0, 256):
-		pixel_num = 0
-		for x in range(0,536):
-			for y in range(0,536):
-				if intensity == int(image[x,y,1]):
-					pixel_num += 1
-		intensities[image_num,intensity] = pixel_num
+		intensities[n,intensity] = np.sum(image[:,:,1]==intensity)
 	image_num += 1
 
 intensities = pd.DataFrame(data=intensities)
